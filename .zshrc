@@ -60,8 +60,8 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+#  zsh-autosuggestions
+#  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -114,5 +114,5 @@ export https_proxy=http://127.0.0.1:1087
 #export ALL_PROXY="socks5://127.0.0.1:1087"
 
 #anaconda
-export PATH=/usr/local/bin:$PATH
-export PATH="/anaconda3/bin:$PATH"
+#export PATH=/usr/local/bin:$PATH
+#export PATH="/anaconda3/bin:$PATH"
