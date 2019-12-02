@@ -60,9 +60,14 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-#  zsh-autosuggestions
-#  zsh-syntax-highlighting
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-completions
+  docker
+  docker-compose
 )
+
+bindkey '`' autosuggest-accept
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,6 +106,8 @@ alias v='vim'
 alias e='exit'
 alias tree='tree -N'
 alias c=clear
+alias s='sdcv'
+alias open='nautilus'
 #解决下载文件的文件名乱码问题
 alias myrecover='test() { mv $1 $(echo -n $1 | iconv -f UTF-8 -t ISO-8859-1 | iconv -f gbk -t utf8);}; test'
 #解决下载文件的内容乱码问题
@@ -108,11 +115,89 @@ alias mytrans='test() {  iconv -f gbk -t utf8 $1>$1.t; mv $1.t $1}; test'
 alias myTcpkeepaliveOpen=" sudo pmset -b tcpkeepalive 1 "
 alias myTcpkeepaliveClose=" sudo pmset -b tcpkeepalive 0 "
 
+alias pycharm="~/pycharm-2018.3.5/bin/pycharm.sh"
+alias gpu-monitor="watch -n 1 nvidia-smi"
+#alias tensorboard='python /home/lima-yz/anaconda3/envs/roboMaster/lib/python3.7/site-packages/tensorboard/main.py'
+
 #proxy
-export http_proxy=http://127.0.0.1:1087
-export https_proxy=http://127.0.0.1:1087
+export http_proxy="http://127.0.0.1:12333"
+export https_proxy="http://127.0.0.1:12333"
 #export ALL_PROXY="socks5://127.0.0.1:1087"
 
-#anaconda
-#export PATH=/usr/local/bin:$PATH
-#export PATH="/anaconda3/bin:$PATH"
+#cuda 9
+export PATH=/usr/local/cuda-9.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64$LD_LIBRARY_PATH
+#cuda 8
+#export PATH=/usr/local/cuda-8.0/bin:$PATH
+#export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64$LD_LIBRARY_PATH
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lima-yz/.mujoco/mujoco200/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia-384
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so
+
+
+# added by Anaconda3 2018.12 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/home/lima-yz/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/home/lima-yz/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/lima-yz/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/home/lima-yz/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
+source activate ros_env
+#source activate roboMaster
+#source activate deepPILCO
+#conda deactivate
+#conda activate rmaiEnv
+
+#IP=$(ip addr show wlx40a5eff46019 | grep -w inet | awk '{print $2}' | awk -F / '{print $1}')
+#IP=$(ip addr show wlx30b49ed22d32 | grep -w inet | awk '{print $2}' | awk -F / '{print $1}')
+
+export ROS_MASTER_URI=http://localhost:11311
+
+#export ROS_MASTER_URI=http://192.168.123.121:11311
+#export ROS_MASTER_URI=http://192.168.123.244:11311
+#export ROS_IP=${IP}
+#export ROS_HOSTNAME=${IP}
+
+source /opt/ros/kinetic/setup.zsh
+#source ~/catkin_ws/devel/setup.zsh
+source ~/Desktop/rmai_ws/devel/setup.zsh  --extend
+#source ~/Desktop/rmai_ws/devel/setup.zsh 
+#source ~/Desktop/pilco_ws/devel/setup.zsh 
+#source ~/Desktop/robotics_hw_ws/devel/setup.zsh
+#source ~/Desktop/test_ws/devel/setup.zsh 
+#source ~/carto_catkin_ws/install_isolated/setup.zsh --extend
+
+
+
+autoload -U compinit && compinit
+
+
+#export PATH="$HOME/anaconda3/envs/rllab3/bin:$PATH"
+#export PYTHONPATH="$HOME/rllab:$PYTHONPATH"
+#source activate rllab3
+
+
+## >>> conda initialize >>>
+## !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/lima-yz/anaconda2/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/lima-yz/anaconda2/etc/profile.d/conda.sh" ]; then
+#        . "/home/lima-yz/anaconda2/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/lima-yz/anaconda2/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+## <<< conda initialize <<<

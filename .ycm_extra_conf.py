@@ -35,7 +35,6 @@ import ycm_core
 
 def GetRosIncludePaths():
     """Return a list of potential include directories
-
     The directories are looked for in $ROS_WORKSPACE.
     """
     try:
@@ -155,7 +154,6 @@ def DirectoryOfThisScript():
 
 def GetCompilationDatabaseFolder(filename):
     """Return the directory potentially containing compilation_commands.json
-
     Return the absolute path to the folder (NOT the file!) containing the
     compile_commands.json file to use that instead of 'flags'. See here for
     more details: http://clang.llvm.org/docs/JSONCompilationDatabase.html.
@@ -240,7 +238,6 @@ def GetCompilationInfoForHeaderSameDir(headerfile, database):
 
 def GetCompilationInfoForHeaderRos(headerfile, database):
     """Return the compile flags for the corresponding src file in ROS
-
     Return the compile flags for the source file corresponding to the header
     file in the ROS where the header file is.
     """
