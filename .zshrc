@@ -201,3 +201,6 @@ autoload -U compinit && compinit
 #fi
 #unset __conda_setup
 ## <<< conda initialize <<<
+
+
+alias killgazebogym='killall -9 rosout roslaunch rosmaster gzserver nodelet robot_state_publisher gzclient'
